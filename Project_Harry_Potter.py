@@ -26,6 +26,15 @@ def compare_cards(stat):
         print("It's a draw!")
 
 
+def set_winner(winner):
+    if winner.count('Player1') > winner.count('Player2'):
+        print('Player 1 won the game by winning {} battles. '.format(winners.count('Player1')))
+    elif winner.count('Player2') > winner.count('Player1'):
+        print('Player 2 won the game by winning {} battles. '.format(winners.count('Player2')))
+    else:
+        print('It is a draw! ')
+
+
 winners = []
 allowed = ['name', 'wand', 'species', 'house']
 for game in range(number_of_rounds):
@@ -54,15 +63,5 @@ for game in range(number_of_rounds):
 
     winners.append(compare_cards(stats_to_use))
 print(winners)
-
-
-def set_winner(winner):
-    if winner.count('Player1') > winner.count('Player2'):
-        print('Player 1 won the game by winning {} battles. '.format(winners.count('Player1')))
-    elif winner.count('Player2') > winner.count('Player1'):
-        print('Player 2 won the game by winning {} battles. '.format(winners.count('Player2')))
-    else:
-        print('It is a draw! ')
-
 
 set_winner(winners)
