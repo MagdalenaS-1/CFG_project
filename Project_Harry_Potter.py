@@ -4,6 +4,7 @@ from pprint import pprint
 
 number_of_rounds = 2
 
+
 def get_card(id_card):
     url = 'http://hp-api.herokuapp.com/api/characters/'
     response = requests.get(url)
@@ -37,7 +38,7 @@ for game in range(number_of_rounds):
     x = 1
 
     while x == 1:
-        if game%2==0:
+        if game % 2 == 0:
             stats_to_use = input("Which stat would you like to use? {}? ".format(allowed))
             if stats_to_use in allowed:
                 x = 0
@@ -45,24 +46,23 @@ for game in range(number_of_rounds):
                 print('Please review your answer. Put {} only.'.format(allowed))
                 x = 1
         else:
-            stats_to_use=allowed[random.randint(0,len(allowed)-1)]
+            stats_to_use = allowed[random.randint(0, len(allowed)-1)]
             x = 0
 
-    print('Player 1 has {} with {} of {}'.format(player_1['name'][0], stats_to_use, player_1[stats_to_use][1]))
-    print('Player 2 has {} with {} of {}'.format(player_2['name'][0], stats_to_use, player_2[stats_to_use][1]))
+    print('You have {} with {} of {}'.format(player_1['name'][0], stats_to_use, player_1[stats_to_use][1]))
+    print('Computer has {} with {} of {}'.format(player_2['name'][0], stats_to_use, player_2[stats_to_use][1]))
 
     winners.append(compare_cards(stats_to_use))
 print(winners)
 
 
-def set_winner(winners):
-    if winners.count('Player1') > winners.count('Player2'):
+def set_winner(winner):
+    if winner.count('Player1') > winner.count('Player2'):
         print('Player 1 won the game by winning {} battles. '.format(winners.count('Player1')))
-    elif winners.count('Player2') > winners.count('Player1'):
+    elif winner.count('Player2') > winner.count('Player1'):
         print('Player 2 won the game by winning {} battles. '.format(winners.count('Player2')))
     else:
         print('It is a draw! ')
 
-set_winner(winners)
 
-#comment123
+set_winner(winners)
